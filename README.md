@@ -5,7 +5,7 @@ Please see [this repo](https://github.com/gvital3230/channels) for instructions 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/gvital3230/turbosms-laravel-notification-channel.svg?style=flat-square)](https://packagist.org/packages/gvital3230/turbosms-laravel-notification-channel)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 [![Build Status](https://img.shields.io/travis/gvital3230/turbosms-laravel-notification-channel/master.svg?style=flat-square)](https://travis-ci.org/gvital3230/turbosms-laravel-notification-channel)
-[![StyleCI](https://styleci.io/repos/:style_ci_id/shield)](https://styleci.io/repos/:style_ci_id)
+[![StyleCI](https://styleci.io/repos/233038111/shield)](https://styleci.io/repos/233038111)
 [![SensioLabsInsight](https://img.shields.io/sensiolabs/i/:sensio_labs_id.svg?style=flat-square)](https://insight.sensiolabs.com/projects/:sensio_labs_id)
 [![Quality Score](https://img.shields.io/scrutinizer/g/gvital3230/turbosms-laravel-notification-channel.svg?style=flat-square)](https://scrutinizer-ci.com/g/gvital3230/turbosms-laravel-notification-channel)
 [![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/gvital3230/turbosms-laravel-notification-channel/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/gvital3230/turbosms-laravel-notification-channel/?branch=master)
