@@ -44,6 +44,5 @@
                 "NotificationChannels\\TurboSMS\\TurboSMSServiceProvider"
             ]
         }
-    },
-
+    }
 }
