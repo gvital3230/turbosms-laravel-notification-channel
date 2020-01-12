@@ -37,9 +37,9 @@ class TurboSMSChannel
         $sms = [
             'sender' => $this->sender,
             'destination' => $message->to,
-            'text' => $message->body
+            'text' => $message->body,
         ];
-        Log::info('TurboSMS sending sms - ' . print_r($sms, true));
+        Log::info('TurboSMS sending sms - '.print_r($sms, true));
 
 //        try {
 //            $client = new SoapClient($this->wsdl_endpoint);
