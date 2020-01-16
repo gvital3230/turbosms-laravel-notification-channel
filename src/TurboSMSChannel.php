@@ -64,12 +64,12 @@ class TurboSMSChannel
             'text' => $message->body,
         ];
         if ($this->debug) {
-            Log::info('TurboSMS sending sms - ' . print_r($sms, true));
+            Log::info('TurboSMS sending sms - '.print_r($sms, true));
         }
 
         $auth = [
             'login' => $this->login,
-            'password' => $this->password
+            'password' => $this->password,
         ];
 
         $client = $this->getClient();
@@ -77,10 +77,9 @@ class TurboSMSChannel
         $result = $client->SendSMS($sms);
 
         if ($this->debug) {
-            Log::info('TurboSMS send result - ' . print_r($result->SendSMSResult->ResultArray, true));
+            Log::info('TurboSMS send result - '.print_r($result->SendSMSResult->ResultArray, true));
         }
 
         return $result;
     }
 }
-
