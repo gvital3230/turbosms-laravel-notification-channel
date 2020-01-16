@@ -2,12 +2,10 @@
 
 namespace NotificationChannels\TurboSMS;
 
-
 use PHPUnit\Framework\TestCase;
 
 class TurboSMSMessageTest extends TestCase
 {
-
     /** @test */
     public function it_can_be_instantiate()
     {

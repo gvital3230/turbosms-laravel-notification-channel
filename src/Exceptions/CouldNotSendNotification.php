@@ -17,5 +17,4 @@ class CouldNotSendNotification extends \Exception
     {
         return new static("The communication with endpoint failed. Reason: {$exception->getMessage()}", $exception->getCode(), $exception);
     }
-
 }
