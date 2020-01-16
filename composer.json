@@ -23,16 +23,16 @@
     },
     "autoload": {
         "psr-4": {
-            "NotificationChannels\\:channel_namespace\\": "src"
+            "NotificationChannels\\TurboSMS\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "NotificationChannels\\:channel_namespace\\Test\\": "tests"
+            "NotificationChannels\\TurboSMS\\Test\\": "tests"
         }
     },
     "scripts": {
-        "test": "phpunit",
+        "test": "vendor/bin/phpunit",
         "test:coverage": "phpunit --coverage-text --coverage-clover=coverage.clover"
     },
     "config": {

@@ -12,13 +12,36 @@ class TurboSMSChannel
     protected $password;
     protected $wsdl_endpoint;
     protected $sender;
+    protected $debug;
 
-    public function __construct(array $config)
+    /**
+     * @return mixed
+     */
+    public function getWsdlEndpoint()
+    {
+        return $this->wsdl_endpoint;
+    }
+
+    public function __construct(array $config = [])
     {
         $this->login = $config['login'];
         $this->password = $config['password'];
         $this->wsdl_endpoint = $config['wsdl_endpoint'];
         $this->sender = $config['sender'];
+        $this->debug = $config['debug'];
+    }
+
+    /**
+     * @return \SoapClient
+     * @throws CouldNotSendNotification
+     */
+    protected function getClient()
+    {
+        try {
+            return new \SoapClient($this->wsdl_endpoint);
+        } catch (\Exception $exception) {
+            throw CouldNotSendNotification::couldNotCommunicateWithEndPoint($exception);
+        }
     }
 
     /**
@@ -27,6 +50,7 @@ class TurboSMSChannel
      * @param mixed $notifiable
      *
      * @param Notification $notification
+     * @return array
      * @throws CouldNotSendNotification
      */
     public function send($notifiable, Notification $notification)
@@ -39,27 +63,24 @@ class TurboSMSChannel
             'destination' => $message->to,
             'text' => $message->body,
         ];
-        Log::info('TurboSMS sending sms - '.print_r($sms, true));
+        if ($this->debug) {
+            Log::info('TurboSMS sending sms - ' . print_r($sms, true));
+        }
 
-//        try {
-//            $client = new SoapClient($this->wsdl_endpoint);
-//        } catch (\Exception $exception) {
-//            throw CouldNotSendNotification::couldNotCommunicateWithEndPoint($exception);
-//        }
-//
-//        $auth = [
-//            'login' => $this->login,
-//            'password' => $this->password
-//        ];
-//
-//        try {
-//            $client->Auth($auth);
-//        } catch (\Exception $exception) {
-//            throw CouldNotSendNotification::couldNotAuthorize($exception);
-//        }
-//
-//        $result = $client->SendSMS($sms);
-//
-//        Log::info('TurboSMS send result - ' . print_r($result->SendSMSResult->ResultArray, true));
+        $auth = [
+            'login' => $this->login,
+            'password' => $this->password
+        ];
+
+        $client = $this->getClient();
+        $client->Auth($auth);
+        $result = $client->SendSMS($sms);
+
+        if ($this->debug) {
+            Log::info('TurboSMS send result - ' . print_r($result->SendSMSResult->ResultArray, true));
+        }
+
+        return $result;
     }
 }
+

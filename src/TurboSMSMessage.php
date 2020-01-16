@@ -7,7 +7,8 @@ class TurboSMSMessage
     public $to;
     public $body;
 
-    public function __construct()
+    public function __construct(string $body)
     {
+        $this->body = $body;
     }
 }
