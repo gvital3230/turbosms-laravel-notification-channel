@@ -31,15 +31,14 @@ class TurboSMSChannelTest extends TestCase
             'password' => 'TEST_PASSWORD',
             'wsdl_endpoint' => 'http://turbosms.in.ua/api/wsdl.html',
             'sender' => 'TEST_SENDER',
-            'debug' => false
+            'debug' => false,
+            'sandbox_mode' => false
         ];
         $this->testChannel = Mockery::mock(TurboSMSChannel::class, [$this->testConfig])->makePartial()->shouldAllowMockingProtectedMethods();
-        echo PHP_EOL;
-        echo PHP_EOL;
 
-        $testClient = $this->getMockFromWsdl($this->testConfig['wsdl_endpoint']);
-        $testClient->method('Auth')->willReturn(true);
-        $testClient->method('SendSMS')->willReturn([
+        $testClient = Mockery::mock(\SoapClient::class);
+        $testClient->shouldReceive('Auth')->andReturn(true);
+        $testClient->shouldReceive('SendSMS')->andReturn([
             'Messages were successfully sent',
             '304a2914-5e1f-772d-9e2f-527a12e01c11'
         ]);

@@ -44,6 +44,7 @@ Add your TurboSMS sms gate login, password and default sender name to your confi
         'password' => env('TURBOSMS_PASSWORD'),
         'sender' => env('TURBOSMS_SENDER'),
         'debug' => env('TURBOSMS_DEBUG', false) //will log sending attempts and results
+        'sandbox_mode' => env('TURBOSMS_SANDBOX_MODE', false) //will not invoke API call
     ],
 ...
 ```

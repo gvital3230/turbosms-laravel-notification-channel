@@ -13,6 +13,7 @@ class TurboSMSChannel
     protected $wsdl_endpoint;
     protected $sender;
     protected $debug;
+    protected $sandbox_mode;
 
     /**
      * @return mixed
@@ -29,6 +30,7 @@ class TurboSMSChannel
         $this->wsdl_endpoint = $config['wsdl_endpoint'];
         $this->sender = $config['sender'];
         $this->debug = $config['debug'];
+        $this->sandbox_mode = $config['sandbox_mode'];
     }
 
     /**
@@ -72,12 +74,17 @@ class TurboSMSChannel
             'password' => $this->password
         ];
 
-        $client = $this->getClient();
-        $client->Auth($auth);
-        $result = $client->SendSMS($sms);
+        $result = true;
 
-        if ($this->debug) {
-            Log::info('TurboSMS send result - ' . print_r($result->SendSMSResult->ResultArray, true));
+        if (!$this->sandbox_mode) {
+
+            $client = $this->getClient();
+            $client->Auth($auth);
+            $result = $client->SendSMS($sms);
+
+            if ($this->debug) {
+                Log::info('TurboSMS send result - ' . print_r($result->SendSMSResult->ResultArray, true));
+            }
         }
 
         return $result;
