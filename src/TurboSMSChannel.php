@@ -3,6 +3,7 @@
 namespace NotificationChannels\TurboSMS;
 
 use Illuminate\Notifications\Notification;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
 use NotificationChannels\TurboSMS\Exceptions\CouldNotSendNotification;
 
@@ -25,12 +26,12 @@ class TurboSMSChannel
 
     public function __construct(array $config = [])
     {
-        $this->login = $config['login'];
-        $this->password = $config['password'];
-        $this->wsdl_endpoint = $config['wsdl_endpoint'];
-        $this->sender = $config['sender'];
-        $this->debug = $config['debug'];
-        $this->sandbox_mode = $config['sandbox_mode'];
+        $this->login = Arr::get($config, 'login');
+        $this->password = Arr::get($config, 'password');
+        $this->wsdl_endpoint = Arr::get($config, 'wsdl_endpoint');
+        $this->sender = Arr::get($config, 'sender');
+        $this->debug = Arr::get($config, 'debug', false);
+        $this->sandbox_mode = Arr::get($config, 'sandbox_mode', false);
     }
 
     /**
