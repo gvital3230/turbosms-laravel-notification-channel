@@ -77,8 +77,7 @@ class TurboSMSChannel
 
         $result = true;
 
-        if (!$this->sandbox_mode) {
-
+        if (! $this->sandbox_mode) {
             $client = $this->getClient();
             $client->Auth($auth);
             $result = $client->SendSMS($sms);
